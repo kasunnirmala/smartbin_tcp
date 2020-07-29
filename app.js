@@ -10,7 +10,7 @@ const DeviceModel = require('./model/device');
 var socket;
 
 io.on('connection', sockt => {
-    console.log("CONNECTED");
+    console.log("IO CONNECTED");
     socket = sockt;
     socket.emit('new-message', 123);
 });
