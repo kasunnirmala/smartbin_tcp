@@ -38,9 +38,11 @@ var tcp = net.createServer(function (soc) {
             console.log(error.message);
 
         };
-        if (socket) {
-            socket.emit('new-message', val);
-        }
+
+        io.emit('new-message', val);
+        // if (socket) {
+        //     socket.emit('new-message', val);
+        // }
         // https.get('https://api.thingspeak.com/update?api_key=5ACCSSP1X1S2WSCN&field1=' + val).on("error", (err) => {
         //     console.log("Error: " + err.message);
         // });;
