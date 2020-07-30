@@ -10,7 +10,7 @@ var socket;
 io.on('connection', sockt => {
     console.log("IO CONNECTED");
     socket = sockt;
-    socket.emit('new-message', 123);
+   // socket.emit('new-message', 123);
 });
 
 
