@@ -3,7 +3,8 @@ const app = express();
 var io = require('socket.io').listen(4567);
 const DeviceModel = require('./model/device');
 require('./db');
-
+const axios = require('axios');
+const request = require('request');
 var socket;
 
 io.on('connection', sockt => {
@@ -34,6 +35,41 @@ app.get('/value/:valu', async (req, res) => {
     };
 
     io.emit('new-message', val);
+
+    var alarm=val>120?"Low":val>80?"Normal":val>40?"Warning":"High";
+
+    // axios.post('http://smartbin.solidaridadasia.com/api/garbage-collection', {
+    //     "phone_number": 1234567891,
+    //     "alarm": alarm,
+    //     "garbage_length": val,
+    //     "garbage_length_unit": "centimeter"
+    // })
+    //     .then((res) => {
+    //         console.log(`statusCode: ${res.statusCode}`)
+    //         console.log(res)
+    //     })
+    //     .catch((error) => {
+    //         console.error(error)
+    //     })
+
+    request.post('http://smartbin.solidaridadasia.com/api/garbage-collection', {
+        json: {
+        "phone_number": 1234567891,
+        "alarm": alarm,
+        "garbage_length": val,
+        "garbage_length_unit": "centimeter"
+    }
+    }, (error, res, body) => {
+        if (error) {
+            console.error(error)
+            return
+        }
+        console.log(`statusCode: ${res.statusCode}`)
+        //console.log(body)
+    })
+
+
+
 
 });
 
