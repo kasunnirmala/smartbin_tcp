@@ -17,7 +17,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 // mongodb + srv://root:16826@cluster0-7kwmc.gcp.mongodb.net/campsite?retryWrites=true&w=majority
 // Connecting to the database
-mongoose.connect("mongodb://localhost:27017/smartbin", {
+mongoose.connect("mongodb://localhost:27017/tea_slasscom", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

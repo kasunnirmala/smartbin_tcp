@@ -5,7 +5,7 @@ var ObjectId = mongoose.Types.ObjectId;
 const DeviceSchema = new mongoose.Schema({
     _id: { type: ObjectIdSchema, default: function () { return new ObjectId() } },
     deviceID: String,
-    value: Number
+    value: String
 
 }, {
     timestamps: true
